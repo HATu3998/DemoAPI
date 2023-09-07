@@ -28,5 +28,12 @@ public BookController() {
 public List<Book> getBooks(){
 	return books.values().stream().toList();
 }
-
+@PostMapping
+public Book createBook(@RequestBody RequestBook bookRequest) {
+	String uuid=UUID.randomUUID().toString();
+	Book newBook=new Book(uuid,bookRequest.title(),bookRequest.author(),bookRequest.year());
+	books.put(uuid, newBook);
+	return newBook;
+	
+}
 }
