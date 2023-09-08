@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,11 @@ public Book updateBook(@PathVariable("id")String id,@RequestBody RequestBook boo
 	Book updateBook=new Book(id,bookRequest.title(),bookRequest.author(),bookRequest.year());
 	books.put(id, updateBook);
 	return updateBook;
+}
+@DeleteMapping(value="/{id}")
+public Book deleteBook(@PathVariable("id")String id) {
+	Book book=books.remove(id);
+	return book;
+	
 }
 }
