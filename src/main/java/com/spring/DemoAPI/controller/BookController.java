@@ -4,6 +4,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,5 +36,9 @@ public Book createBook(@RequestBody RequestBook bookRequest) {
 	books.put(uuid, newBook);
 	return newBook;
 	
+}
+@GetMapping(value="/{id}")
+public Book getBookById(@PathVariable("id") String id) {
+	return books.get(id);
 }
 }
